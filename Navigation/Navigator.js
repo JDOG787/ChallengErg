@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import Tabs from './/Tabs';
+import Tabs from './Tabs';
 import AuthStack from './AuthStack';
 import AuthContext from '../contexts/AuthContext';
 
