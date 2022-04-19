@@ -11,16 +11,18 @@ import Map from '../components/Map';
 export default function Event() {
     const [data, setData] = useState()
     useEffect(() => {
-        axios('https://Challengerg-API.jdog787.repl.co', {
+        axios('http://localhost:8080', {
             method: "GET"
         })
         .then(res => {
+            // console.log(res.data.name)
             setData(res.data)
         })
     }, [])
 
     if (data) {
         const line = data.route;
+        console.log(line)
         const geoLine = []
         line.map((li) => {
           geoLine.push([li.latitude, li.longitude])
