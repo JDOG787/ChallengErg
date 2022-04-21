@@ -11,12 +11,11 @@ import Map from '../components/Map';
 export default function Event() {
     const [data, setData] = useState()
     useEffect(() => {
-        axios('http://localhost:8080', {
+        axios('http://192.168.132.15:8080/events/', {
             method: "GET"
         })
         .then(res => {
-            // console.log(res.data.name)
-            setData(res.data)
+            setData(res.data.event);
         })
     }, [])
 

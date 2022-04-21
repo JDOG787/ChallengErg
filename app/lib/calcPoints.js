@@ -25,7 +25,7 @@ export default function calcPoints(racers, geoLine, length) {
           pointY = geoLine[geoLine.length-1][1];
       }
       console.log(pointX, pointY)
-      racerPoints.push([pointX, pointY]);
+      racerPoints.push({cords: [pointX, pointY], racer: racers[x].name});
       // setPoints(old => [...old, newPoint]);
 
     }

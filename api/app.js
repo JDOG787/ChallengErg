@@ -1,37 +1,24 @@
-const express = require("express");
+import express from 'express';
+import mongoose from 'mongoose';
+import userRouter from './routes/user.js';
+import eventRouter from './routes/event.js';
+import logRouter from './routes/log.js';
+import Event from './models/Event.js';
+import seed from './seed.js';
 const app = express();
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://root:example@localhost:27017/test?authSource=admin")
+// Middleware
+app.use(express.json());
+app.use('/users', userRouter);
+app.use('/events', eventRouter);
+app.use('/logs', logRouter);
 
-const Event = mongoose.model('Event', { 
-  name: String ,
-  route: [
-    {
-      latitude: String,
-      latitude: String
-    }
-  ],
-  racers: [
-    {
-      name:String,
-      distanceTraveled: Number
-    }
-  ]
-});
+// Connect to MongoDB
+seed();
+mongoose.connect('mongodb://root:example@localhost:27017/test?authSource=admin')
 
 
 
-app.get("/", async (req, res) => {
-    
-    const event = await Event.find();
-    res.json(event);
+app.listen(8080, () => {
+    console.log('Server started at: http://localhost:8080');
 })
-
-app.post("/user/signup", async (req, res) => {
-    const token = await jwt.sign({username: "JDOG", id: 2}, "SECRET");
-    res.json({success: true, token});
-})
-
-app.listen(8080)

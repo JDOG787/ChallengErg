@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {
-StyleSheet,
-Text,
-View,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  Text,
+  View,
+  Alert
 } from 'react-native';
 import MapView, { Polyline, Marker } from 'react-native-maps';
 
@@ -60,17 +63,17 @@ const Map = (props) => {
           />
           {
             props.points.map((p, i) => {
-              return <Marker coordinate={{longitude: p[1], latitude: p[0]}} key={i}>
-                <View style={{backgroundColor: "rgba(255,255,255,0.8)", padding: 5, borderRadius: 50}}>
-                  <Text>DH</Text>
-                </View>
+              return <Marker onPress={() => Alert.alert('Simple Button pressed')} coordinate={{longitude: p.cords[1], latitude: p.cords[0]}} key={i}>
+                  <TouchableOpacity
+                    style={{ backgroundColor: "#000", width: 22, height: 22, display: "flex", justifyContent:"center", alignItems: "center", borderRadius: 50,}}
+                    >
+                      <Text style={{color: "white", fontSize: 12}}>{i.toString()}</Text>
+                    </TouchableOpacity>
               </Marker>
             })
           } 
     </MapView>  
   );
-
-  // return <Text>FART</Text>
 };
 
 export default Map;
