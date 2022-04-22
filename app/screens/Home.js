@@ -2,17 +2,25 @@ import React, { useState } from 'react';
 import { View, Text, Button, TextInput } from 'react-native';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
+import axios from 'axios';
 
 export default function Home() {
     const [log, setLog] = useState('');
     const auth = useContext(AuthContext);
 
     const addLog = () => {
-        const res = axios.post('/api/user/logs/add', {
+        const res = axios('http://192.168.132.15:8080/logs/add', {
+            method: 'POST',
             data: {
-                distance: Math.floor(Math.random() * 100)
+                distance: log
+            },
+            headers: {
+                Authorization: `${auth.authData}`
             }
-        });
+        })
+        .catch(err => console.log(err));
+    }
+    console.log(log)
     return (
         <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
             <Text>Home</Text>
@@ -21,10 +29,10 @@ export default function Home() {
             onPress={() => auth.logout()}
             />
             <Text>{auth.authData}</Text>
-            <TextInput value={log} onChange={setLog} placeholder='new log' keyboardType='number-pad'/>
+            <TextInput value={log} onChangeText={setLog} placeholder='new log' keyboardType='number-pad'/>
             <Button
             title='Add Log'
-            onPress={() => auth.logout()}
+            onPress={() => addLog()}
             />
         </View>
     );
