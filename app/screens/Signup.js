@@ -5,6 +5,7 @@ import axios from 'axios';
 import PrimaryButton from '../components/PrimaryButton';
 import Input from '../components/Input.js';
 import styles from '../styles/global';
+import { signup } from '../lib/functions';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -12,20 +13,11 @@ export default function Signup() {
   const [error , setError] = useState('');
 
   async function fetchToken() {
-    const res = await axios("http://192.168.132.15:8080/users/signup/", {
-      method: "POST",
-      data: {
-        email: email,
-        password: password
-      }
-    })
-    .catch(err => {
-      console.log("Signup Failed", err)
-      // setError(err)
-    })
+    const res = await signup(email, password)
+    console.log("hiiii", res)
 
-    if (res.data.success === true) {
-      auth.login(res.data.token);
+    if (res.success === true) {
+      auth.login(res.token);
     }
   }
 
@@ -43,6 +35,7 @@ export default function Signup() {
       >
         <Text>Signup</Text>
       </TouchableOpacity> */}
+
       <Input placeholder="Email" value={email} onChangeText={setEmail}/>
       <Input placeholder="Password" value={password} onChangeText={setPassword}/>
       <PrimaryButton text="Sign Up" onPress={()=> fetchToken() }/>
