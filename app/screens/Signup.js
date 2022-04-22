@@ -4,6 +4,7 @@ import AuthContext from '../contexts/AuthContext';
 import axios from 'axios';
 import PrimaryButton from '../components/PrimaryButton';
 import Input from '../components/Input.js';
+import styles from '../styles/global';
 
 export default function Signup() {
   const [email, setEmail] = useState('');
@@ -32,7 +33,7 @@ export default function Signup() {
 
   const auth = useContext(AuthContext);
   return (
-    <View style={{flex: 1, justifyContent: "center", alignItems: "center", backgroundColor: "#121212", padding: 18}}>
+    <View style={styles.page}>
       <Text style={{fontSize: 30, color: "white"}}>Signup</Text>
       {/* <TextInput value={email} onChangeText={setEmail} placeholder='email' style={{width: "100%", padding: 16, borderColor: "red", borderWidth: 2}}/> */}
       {/* <TextInput value={password} onChangeText={setPassword} placeholder='password' style={{width: "100%", padding: 16, borderColor: "red", borderWidth: 2}}/> */}

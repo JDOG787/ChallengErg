@@ -3,6 +3,8 @@ import { View, Text, Button, TextInput } from 'react-native';
 import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import axios from 'axios';
+import styles from '../styles/global';
+
 
 export default function Home() {
     const [log, setLog] = useState('');
@@ -22,7 +24,7 @@ export default function Home() {
     }
     console.log(log)
     return (
-        <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
+        <View style={styles.page}>
             <Text>Home</Text>
             <Button
             title='Logout'
