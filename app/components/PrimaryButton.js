@@ -13,15 +13,16 @@ export default PrimaryButton = props => {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: "#03dac5",
-        padding: 16,
+        backgroundColor: "#4dc3ff",
+        padding: 12,
         paddingHorizontal: 34,
         borderRadius: 50,
-        margin: 8
+        marginTop: 22
     },
     buttonText: {   
         color: "black",
-        fontSize: 18,
-        textAlign: "center"
+        fontSize: 20,
+        textAlign: "center",
+        fontFamily: "700"
     }
 });

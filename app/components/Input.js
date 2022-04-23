@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
         backgroundColor: "#262626",
         borderColor: "#5f5f5f",
         borderWidth: 1,
-        margin: 10,
+        marginBottom: 10,
         fontSize: 18,
         paddingLeft: 14,
         color: "white",
-        borderRadius: 8
+        borderRadius: 8,
+        // backgroundColor: "red"
     }
 });

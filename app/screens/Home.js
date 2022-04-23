@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import AuthContext from '../contexts/AuthContext';
 import axios from 'axios';
 import styles from '../styles/global';
+import Summary from '../components/Summary';
 
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
     console.log(log)
     return (
         <View style={styles.page}>
-            <Text>Home</Text>
+            {/* <Text>Home</Text>
             <Button
             title='Logout'
             onPress={() => auth.logout()}
@@ -35,6 +36,12 @@ export default function Home() {
             <Button
             title='Add Log'
             onPress={() => addLog()}
+            /> */}
+            <Text style={styles.title}>Challengerg</Text>
+            <Summary/>
+            <Button
+            title='Logout'
+            onPress={() => auth.logout()}
             />
         </View>
     );
