@@ -2,6 +2,9 @@ import { View, Text, StyleSheet } from "react-native";
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function Error({ error }) {
+    if (!error) {
+        return null;
+    }
     return (
         <View style={styles.container}>
             <Ionicons name="alert-circle" size={20} color="white" />

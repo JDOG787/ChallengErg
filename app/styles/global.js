@@ -9,9 +9,10 @@ export default StyleSheet.create({
         padding: 18,
         paddingTop: 50
     },
-    centerPage: {
-        flex: 1,
-        justifyContent: "flex-end",
+    authPage: {
+        // flex: 1,
+        paddingTop: 50,
+        justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "#121212",
         padding: 18,

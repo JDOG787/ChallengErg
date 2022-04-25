@@ -2,7 +2,8 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import HomeScreen from '../screens/Home';
 import { View, Text } from 'react-native';
-import EventScreen from '../screens/Event';
+import EventScreen from '../screens/Events';
+import EventStack from './EventStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +30,7 @@ export default function Tabs() {
             )
     }}
     />
-    <Tab.Screen name="Event" component={EventScreen} 
+    <Tab.Screen name="Event" component={EventStack} 
         options={{
             tabBarIcon: ({ focused }) => (
                 <View>

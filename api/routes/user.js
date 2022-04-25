@@ -5,19 +5,30 @@ const router = express.Router();
 
 
 router.post("/signup", async (req, res) => {
-    console.log("trya auth auth")
 
-    const { email, password } = req.body;
-    console.log(email, password);
-    if (!email || !password) return res.status(400).send("Please enter an email and password");
-    // const user = await User.findOne({ email });
-    // if (user) return res.status(400).send("Email is already in use");
+
+    const { name, email, password } = req.body;
+    if (!name || !email || !password) return res.send({ success: false, error: "Please enter all fields." });
+    const user = await User.findOne({ email });
+    if (user) return res.send({ success: false, error: "Email is already in use" });
     const newUser = new User({
+        name,
         email,
         password
     });
     newUser.save()
     const token = await jwt.sign({ id: newUser._id }, "SECRET");
+    console.log("authed")
+    res.json({success: true, token});
+});
+
+router.post("/login", async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) return res.send({ success: false, error: "Please enter all fields." });
+    const user = await User.findOne({ email });
+    if (!user) return res.send({ success: false, error: "Account doesn't exist." });
+    if (user.password !== password) return res.send({ success: false, error: "Incorrect password." });
+    const token = await jwt.sign({ id: user._id }, "SECRET");
     console.log("authed")
     res.json({success: true, token});
 });

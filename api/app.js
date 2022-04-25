@@ -6,10 +6,12 @@ import logRouter from './routes/log.js';
 import User from './models/User.js';
 import Log from './models/Log.js';
 import seed from './seed.js';
+import requestInfo from './middlewares/index.js';
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(requestInfo);
 app.use('/users', userRouter);
 app.use('/events', eventRouter);
 app.use('/logs', logRouter);
