@@ -1,7 +1,8 @@
 import fetch from './fetch.js';
+import { API_BASE_URL } from './constants.js';
 
 export async function signup(name, email, password) {
-    const data = await fetch('http://192.168.132.15:8080/users/signup/', {
+    const data = await fetch(`${API_BASE_URL}/users/signup/`, {
         method: 'POST',
         data: {
             name, 
@@ -14,7 +15,7 @@ export async function signup(name, email, password) {
 }
 
 export async function login(email, password) {
-    const data = await fetch('http://192.168.132.15:8080/users/login/', {
+    const data = await fetch(`${API_BASE_URL}/users/login/`, {
         method: 'POST',
         data: {
             email,
