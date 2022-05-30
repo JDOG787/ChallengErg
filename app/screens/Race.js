@@ -8,7 +8,7 @@ import Map from '../components/Map';
 export default Race = ({ navigation }) => {
     const [data, setData] = useState()
     useEffect(() => {
-        axios('http://192.168.132.15:8080/events/', {
+        axios('http://localhost:3000/events/', {
             method: "GET"
         })
         .then(res => {

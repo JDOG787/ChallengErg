@@ -1,28 +1,43 @@
-import { TextInput, StyleSheet } from "react-native";
+import { TextInput, StyleSheet, View } from "react-native";
+import { foregroundPrimaryDefault, foregroundSecondaryDefault, foregroundTertiaryDefault, backgroundSecondaryDefault, accentNegativeDefault } from "../lib/colors";
+import Error from "./Error";
 
-export default Input = props => {
+export default Input = (props) => {
+
     return (
-        <TextInput
-        {...props}
-        placeholder={props.placeholder}
-        placeholderTextColor="#eee"
-        style={styles.input}
-        />
+        <View>
+            <TextInput
+                {...props}
+                placeholder={props.placeholder}
+                placeholderTextColor={foregroundSecondaryDefault}   
+                style={[styles.input, {borderColor: props.errorState ? accentNegativeDefault : foregroundTertiaryDefault}]}
+                textBreakStrategy="simple"
+            />
+            {
+                props.errorState ?
+                    <Error error={props.error}/>
+                :
+                    null
+            }
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
     input: {
-        height: 40,
+        // height: 40,
         width: "100%",
-        backgroundColor: "#262626",
-        borderColor: "#5f5f5f",
-        borderWidth: 1,
-        marginBottom: 10,
-        fontSize: 18,
-        paddingLeft: 14,
-        color: "white",
-        borderRadius: 8,
+        backgroundColor: backgroundSecondaryDefault,
+        borderColor: foregroundTertiaryDefault,
+        borderWidth: 2,
+        marginVertical: 8,
+        fontSize: 16,
+        // textAlignVertical: 'top',  
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        // paddingLeft: 14,
+        color: foregroundPrimaryDefault,
+        borderRadius: 16,
         // backgroundColor: "red"
     }
 });

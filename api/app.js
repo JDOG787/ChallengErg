@@ -7,6 +7,7 @@ import User from './models/User.js';
 import Log from './models/Log.js';
 import seed from './seed.js';
 import requestInfo from './middlewares/index.js';
+import init from './utils/init.js';
 const app = express();
 
 // Middleware
@@ -16,17 +17,11 @@ app.use('/users', userRouter);
 app.use('/events', eventRouter);
 app.use('/logs', logRouter);
 
-// Connect to MongoDB
-// seed();
-(async () => {
-    await Log.find({}).then(users => {
-        console.log(users);
-    });
-})()
-mongoose.connect('mongodb://root:example@localhost:27017/test?authSource=admin')
+// mongoose.connect('mongodb://root:example@localhost:27017/test?authSource=admin')
 
+init()
+// seed()
 
-
-app.listen(8080, () => {
+app.listen(3000, () => {
     console.log('Server started at: http://localhost:8080');
 })

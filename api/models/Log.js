@@ -5,6 +5,10 @@ const schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
+    event: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    },
     distance: {
         type: Number,
         required: true

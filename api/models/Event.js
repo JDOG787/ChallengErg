@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const schema = new mongoose.Schema({ 
     name: String,
+    description: String,
     route: [
         {
             latitude: Number,
@@ -10,8 +11,8 @@ const schema = new mongoose.Schema({
     ],
     racers: [
         {
-            name:String,
-            distanceTraveled: Number
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
         }
     ]
 });

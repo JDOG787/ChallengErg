@@ -1,8 +1,19 @@
 import Event from './models/Event.js';
+import Log from './models/Log.js';
+import User from './models/User.js';
 
 
 export default async () => {
+    // Clear db
     await Event.deleteMany({});
+    await User.deleteMany({});
+    await Log.deleteMany({})
+
+    const user = await User.create({
+        username: 'JD_TEST',
+        email: "hello@jdog.dev",
+        password: "123"
+    });
     await Event.create({
         name: 'Test Event',
         route: [
@@ -20,20 +31,11 @@ export default async () => {
             }
         ],
         racers: [
-            {
-            name: 'Silly Person',
-            distanceTraveled: 200
-            },
-            {
-            name: 'JDOG787',
-            distanceTraveled: 1200000
-            },
-            {
-                name: 'awesome',
-                distanceTraveled: 3000000
-            }
+            user._id
         ]
     });
+
+    
     console.log('Seeded the db');
 }
 

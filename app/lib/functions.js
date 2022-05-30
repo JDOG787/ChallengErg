@@ -25,3 +25,28 @@ export async function login(email, password) {
     console.log("login", data)
     return data;
 }
+
+export async function getLogs(token) {
+    const data = await fetch(`${API_BASE_URL}/logs/`, {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+    console.log("get logs", data)
+    return data;
+}
+
+export async function addLog(token, log) {
+    const data = await fetch(`${API_BASE_URL}/logs/add/`, {
+        method: 'POST',
+        headers: {
+            'Authorization': token
+        },
+        data: {
+            distance: log
+        }
+    })
+    console.log("add log", data)
+    return data;
+}

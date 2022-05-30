@@ -6,8 +6,8 @@ export default StyleSheet.create({
         // justifyContent: "center",
         // alignItems: "center",
         backgroundColor: "#121212",
-        padding: 18,
-        paddingTop: 50
+        // padding: 18,
+        // paddingTop: 50
     },
     authPage: {
         // flex: 1,

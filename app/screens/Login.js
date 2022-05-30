@@ -11,6 +11,9 @@ import Error from '../components/Error';
 import Title from '../components/Title';
 import logo from '../assets/logo.png';
 import PageContainer from '../components/PageContainer';
+import AuthPage from '../components/AuthPage';
+import Hero from '../components/Hero';
+import HeaderSmall from '../components/HeaderSmall';
 
 export default function Login({ navigation }) {
   const [email, setEmail] = useState('');
@@ -31,22 +34,20 @@ export default function Login({ navigation }) {
 
   const auth = useContext(AuthContext);
   return (
-    <PageContainer>
-      <KeyboardAvoidingView style={{width: "100%"}} 
-        behavior="position">
-        <View style={{flex: 1, alignItems: "center"}}>
-          <Image style={{width: 150, height: 150, resizeMode: "contain"}} source={logo}/>
-          <Text style={styles.title}>ChallengErg</Text>
+    <AuthPage>
+      {/* <KeyboardAvoidingView style={{width: "100%"}} 
+        behavior="position"> */}
+        <Hero/>
+        <View>
+          <HeaderSmall>Log in</HeaderSmall>
+          <Input placeholder="Email" value={email} onChangeText={setEmail}/>
+          <Input secureTextEntry={true} placeholder="Password" value={password} onChangeText={setPassword}/>
+          <Error error={error}/>
+          <Button title='Signup' onPress={() => navigation.navigate("Signup")}/>
+          <PrimaryButton text="Login" onPress={()=> fetchToken() }/>
         </View>
-
-        <Title text={"Login"}/>
-        <Input placeholder="Email" value={email} onChangeText={setEmail}/>
-        <Input secureTextEntry={true} placeholder="Password" value={password} onChangeText={setPassword}/>
-        <Error error={error}/>
-        <Button title='Signup' onPress={() => navigation.navigate("Signup")}/>
-        <PrimaryButton text="Login" onPress={()=> fetchToken() }/>
-      </KeyboardAvoidingView>
-    </PageContainer>
+      {/* </KeyboardAvoidingView> */}
+    </AuthPage>
 
       // <Image source={logo} style={{width: 150, height: 150, resizeMode: "contain"}}/>
   );

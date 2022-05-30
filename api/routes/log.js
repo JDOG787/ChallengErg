@@ -4,6 +4,19 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 const router = express.Router();
 
+router.get("/", async (req, res) => {
+    const token = req.headers['authorization'];
+    console.log(token);
+    // decrpyt token
+    const payload = jwt.verify(token, 'SECRET');
+    // get user from token
+    console.log(payload.id);
+
+    const logs = await Log.find({user: payload.id});
+
+    res.send(logs);
+})
+
 router.post('/add', async (req, res) => {
     console.log("add log");
     // get token from header

@@ -7,6 +7,12 @@ import Map from '../components/Map';
 import styles from '../styles/global';
 import PageContainer from '../components/PageContainer';
 import EventCard from '../components/EventCard';
+import HeaderSmall from '../components/HeaderSmall';
+import SeconaryButton from '../components/SecondaryButton';
+import ParagraphAccent from '../components/ParagraphAccent';
+import { backgroundSecondaryDefault } from '../lib/colors';
+import PrimaryButton from '../components/PrimaryButton';
+import TertiaryButton from '../components/TertiaryButton';
 
 
 
@@ -14,7 +20,7 @@ import EventCard from '../components/EventCard';
 export default function Event({ navigation }) {
     const [data, setData] = useState()
     useEffect(() => {
-        axios('http://192.168.132.15:8080/events/', {
+        axios('http://localhost:3000/events/', {
             method: "GET"
         })
         .then(res => {
@@ -56,23 +62,9 @@ export default function Event({ navigation }) {
             //     </View>
             // </SafeAreaView>
             <PageContainer>
-                <Text style={styles.title}>Current</Text>
-                <Text style={{fontSize: 28, color: "white", fontFamily: "600"}}>Registered</Text>
-                {/* {
-                    data !== undefined ? data.forEach(event => {
-                        return (
-                            <EventCard name={event.name}/>
-                        )
-                    })
-                    : <Text>Loading</Text>
-                } */}
-                <EventCard name="Grand Canyon River" navigation={navigation}/>
-                <EventCard name="Grand Canyon River"/>
-
-                <Text style={{fontSize: 28, color: "white", fontFamily: "600"}}>Starting Soon</Text>
-                <EventCard name="Grand Canyon River"/>
-
-
+                <HeaderSmall>Events</HeaderSmall>
+                <SeconaryButton text="View main map"/>
+                <EventCard name={"Funn"}/>
 
             </PageContainer>
         ) 

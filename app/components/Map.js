@@ -55,12 +55,13 @@ const Map = (props) => {
 
 
   return (
-    <MapView style={styles.map}>
+    <MapView style={styles.map}  mapType="mutedStandard">
           <Polyline
             coordinates={props.line}
             strokeColor="#000" 
             strokeWidth={6}
           />
+          
           {
             props.points.map((p, i) => {
               return <Marker onPress={() => Alert.alert('Simple Button pressed')} coordinate={{longitude: p.cords[1], latitude: p.cords[0]}} key={i}>

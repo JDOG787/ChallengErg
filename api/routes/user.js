@@ -5,10 +5,9 @@ const router = express.Router();
 
 
 router.post("/signup", async (req, res) => {
-
-
     const { name, email, password } = req.body;
     if (!name || !email || !password) return res.send({ success: false, error: "Please enter all fields." });
+
     const user = await User.findOne({ email });
     if (user) return res.send({ success: false, error: "Email is already in use" });
     const newUser = new User({
