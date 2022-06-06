@@ -2,29 +2,29 @@ import { View, StyleSheet, Text } from "react-native";
 import PrimaryButton from "./PrimaryButton";
 import { backgroundSecondaryDefault, backgroundTertiaryDefault, foregroundPrimaryDefault} from "../lib/colors";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { tesselate } from "@turf/turf";
+import { MONTHS_OF_THE_YEAR } from "../lib/constants";
 
-export default EventCard = ({ name, navigation }) => {
+export default EventCard = ({ name, from, to, distance, users, start, end, navigation }) => {
     return (
         <View style={styles.eventCard}>
             <ParagraphAccent>{name}</ParagraphAccent>
             <View style={styles.fromTo}>
-                <Text style={styles.fromToText}>From </Text>
+                <Text style={styles.fromToText}>{from} </Text>
                 <Ionicons name="caret-forward-outline" size={24} color={foregroundPrimaryDefault} />
-                <Text style={styles.fromToText}> To</Text>
+                <Text style={styles.fromToText}> {to}</Text>
             </View>
             <View style={styles.eventTags}>
                 <View style={styles.eventTag}>
                     <Ionicons size={16} name="map" color={foregroundPrimaryDefault}/>
-                    <Text style={styles.tagText}>10000m</Text>
+                    <Text style={styles.tagText}>{distance}m</Text>
                 </View>
                 <View style={styles.eventTag}>
                     <Ionicons size={16} name="time" color={foregroundPrimaryDefault}/>
-                    <Text style={styles.tagText}>Jun. 6 - Jul. 6</Text>
+                    <Text style={styles.tagText}>{MONTHS_OF_THE_YEAR[new Date(start).getMonth()]} {new Date(start).getDate()} - {MONTHS_OF_THE_YEAR[new Date(end).getMonth()]} {new Date(end).getDate()}</Text>
                 </View>
                 <View style={styles.eventTag}>
                     <Ionicons size={16} name="people" color={foregroundPrimaryDefault}/>
-                    <Text style={styles.tagText}>172 Registered</Text>
+                    <Text style={styles.tagText}>{users} Registered</Text>
                 </View>
             </View>
             <PrimaryButton>Register</PrimaryButton>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         backgroundColor: backgroundSecondaryDefault, 
         padding: 16, 
         marginTop: 32, 
+        // marginBottom: 60, 
         borderRadius: 16
     },
     fromTo: {

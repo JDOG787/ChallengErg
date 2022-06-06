@@ -1,35 +1,23 @@
 import express from 'express';
 import jwt from "jsonwebtoken";
+import { login, signup } from '../controllers/authController.js';
 import User from '../models/User.js';
 const router = express.Router();
 
 
-router.post("/signup", async (req, res) => {
-    const { name, email, password } = req.body;
-    if (!name || !email || !password) return res.send({ success: false, error: "Please enter all fields." });
+router.post("/signup", signup);
 
-    const user = await User.findOne({ email });
-    if (user) return res.send({ success: false, error: "Email is already in use" });
-    const newUser = new User({
-        name,
-        email,
-        password
-    });
-    newUser.save()
-    const token = await jwt.sign({ id: newUser._id }, "SECRET");
-    console.log("authed")
-    res.json({success: true, token});
-});
+router.post("/login", login);
 
-router.post("/login", async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) return res.send({ success: false, error: "Please enter all fields." });
-    const user = await User.findOne({ email });
-    if (!user) return res.send({ success: false, error: "Account doesn't exist." });
-    if (user.password !== password) return res.send({ success: false, error: "Incorrect password." });
-    const token = await jwt.sign({ id: user._id }, "SECRET");
-    console.log("authed")
-    res.json({success: true, token});
+router.get("/events", async (req, res) => {
+    const { authorization } = req.headers;
+    console.log("auth", authorization)
+    if (!authorization) return res.send({ success: false, error: "Please login." });
+    const user = await User.findById(jwt.verify(authorization, process.env.SECRET).id).populate("Events").exec();
+    if (!user) return res.send({ success: false, error: "Please login." });
+    // const events = await user;
+    console.log(user)
+    res.json({success: true, events: user});
 });
 
 export default router;

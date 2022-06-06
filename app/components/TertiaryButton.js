@@ -7,7 +7,7 @@ export default TertiaryButton = props => {
         <TouchableOpacity
         // style={styles.button}
         onPress={props.onPress}
-        style={styles.button}
+        style={[styles.button, props.style ]}
         >
                 <Text style={styles.buttonText}>{props.children || props.text}</Text>
         </TouchableOpacity>
@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
         borderRadius: 16    ,
         marginTop: 22,
         // width: "100%"
+        // flex: 1
     },
     buttonText: {   
         color: foregroundPrimaryDefault,

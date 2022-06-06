@@ -1,27 +1,37 @@
-import { useState } from "react";
-import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+import { useState, useEffect, useRef } from "react";
+import { Animated, StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import Ionicon from "react-native-vector-icons/Ionicons";
 import LinearGradient from 'react-native-linear-gradient';
 import { backgroundPrimaryDefault, backgroundSecondaryDefault, backgroundTertiaryDefault, foregroundPrimaryDefault, foregroundSecondaryDefault, foregroundTertiaryDefault } from "../lib/colors";
 
 export default SecondaryButton = props => {
     const [expanded, setExpanded] = useState(false);
-    const [option, setOption] = useState(props.defaultOption);
-    props.onChange(option)
+    // const [option, setOption] = useState(props.defaultOption);
+
+    useEffect(() => {
+        props.onChange(props.defaultOption);
+    }, []);
+
+    const toggle = () => {
+        setExpanded(!expanded);
+
+    };
 
     const selectOption = (option) => {
-        setOption(option)
+        // setOption(option)
+        props.onChange(option);
         setExpanded(false)
     }
+
 
     return (
         <TouchableOpacity
         // style={styles.button}
-        onPress={() => setExpanded(!expanded)}
+        onPress={toggle}
         style={styles.dropdown}
         >
                 <View style={styles.dropdownLabelContainer}>
-                    <Text style={styles.dropdownLabel}>{option}</Text>
+                    <Text style={styles.dropdownLabel}>{props.value}</Text>
                     {
                         expanded?
                             <Ionicon size={20} name="chevron-up-outline" color={foregroundSecondaryDefault}/>
@@ -30,7 +40,7 @@ export default SecondaryButton = props => {
                     }
 
                 </View>
-                <View style={[styles.expand, {display: expanded ? "" : "none"}]}>
+                <Animated.View style={[styles.expand, { display: expanded ? "" : "none" }]}>
                     {
                         props.options.map((o, i) => 
                             <Text key={i} onPress={() => selectOption(o)} style={styles.expandText}>{o}</Text>
@@ -38,7 +48,7 @@ export default SecondaryButton = props => {
                     }
                     {/* <Text onPress={() => selectOption("poop2")} style={styles.expandText}>Grand Canyon</Text> */}
                     {/* <Text onPress={() => selectOption("poop3")} style={styles.expandText}>Grand Canyon</Text> */}
-                </View>
+                </Animated.View>
         </TouchableOpacity>
     );
 }

@@ -44,8 +44,8 @@ export default function Signup({ navigation }) {
   const auth = useContext(AuthContext);
   return (
     <AuthPage>
-      {/* <KeyboardAvoidingView style={{width: "100%"}} 
-        behavior="position"> */}
+      <KeyboardAvoidingView style={{width: "100%"}} 
+        behavior="position">
         <Hero/>
 
         <View>
@@ -65,7 +65,7 @@ export default function Signup({ navigation }) {
               <PrimaryButton text="Create Account" onPress={()=> fetchToken() }/>
           }
         </View>
-      {/* </KeyboardAvoidingView> */}
+      </KeyboardAvoidingView>
 
     </AuthPage>
 

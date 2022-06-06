@@ -1,6 +1,6 @@
 import { Button, SafeAreaView, Text, View } from 'react-native';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import calcPoints from '../lib/calcPoints';
 import * as turf from '@turf/turf';
 import Map from '../components/Map';
@@ -13,19 +13,22 @@ import ParagraphAccent from '../components/ParagraphAccent';
 import { backgroundSecondaryDefault } from '../lib/colors';
 import PrimaryButton from '../components/PrimaryButton';
 import TertiaryButton from '../components/TertiaryButton';
+import { getEvents, getRegisteredEvents } from '../lib/functions';
+import AuthContext from '../contexts/AuthContext';
+import Loader from '../components/Loader';
 
 
 
 
 export default function Event({ navigation }) {
-    const [data, setData] = useState()
+    const [events, setEvents] = useState();
+    const auth = useContext(AuthContext)
+
     useEffect(() => {
-        axios('http://localhost:3000/events/', {
-            method: "GET"
-        })
-        .then(res => {
-            setData(res.data.event);
-        })
+        getEvents(auth.authData)
+            .then(res => {
+                setEvents(res)
+            })
     }, [])
 
     // if (data) {
@@ -44,27 +47,18 @@ export default function Event({ navigation }) {
     //     return  <Map line={line} points={points}/>;
     // } else {
         return (
-            // <SafeAreaView style={{padding: 50}}>
-            //     <View style={{backgroundColor: "#121212", height: "100%", padding: 18}}>
-            //         <Text style={styles.title}>Events</Text>
-            //         <Text style={{fontSize: 28, color: "white", fontFamily: "600"}}>Registered</Text>
-            //         {/* Event card */}
-            //         <View>
-            //             <View style={{backgroundColor: "#212121", height: "100%", padding: 18}}>
-            //                 <Text style={styles.title}>Event 1</Text>
-            //                 <Text style={{fontSize: 28, color: "white", fontFamily: "600"}}>Registered</Text>
-            //                 <Text style={{fontSize: 18, color: "white", fontFamily: "600"}}>
-            //                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            //                     Donec euismod, nisi eget consectetur ultrices,
-            //                 </Text>
-            //             </View>
-            //         </View>
-            //     </View>
-            // </SafeAreaView>
+
             <PageContainer>
                 <HeaderSmall>Events</HeaderSmall>
                 <SeconaryButton text="View main map"/>
-                <EventCard name={"Funn"}/>
+                {
+                    events ? events.map((e, i) => {
+                        return <EventCard key={i} name={e.name} from={e.fromLocation} to={e.toLocation} distance={e.distance} start={e.startDate} end={e.endDate} users={e.racers.length}/>
+                        // return <Text>ello</Text>
+                    })
+                    : <Loader/>
+                }
+                {/* <EventCard name={"Funn"}/> */}
 
             </PageContainer>
         ) 

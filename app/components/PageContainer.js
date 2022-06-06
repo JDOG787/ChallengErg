@@ -1,10 +1,10 @@
 import { View, StyleSheet, SafeAreaView, ScrollView } from "react-native";
 import{ ModalProvider } from '../contexts/ModalContext';
 
-export default PageContainer = ({ children, authPage }) => {
+export default PageContainer = ({ children, authPage, onLayout }) => {
 
     return (
-        <ScrollView style={styles.page}>
+        <ScrollView style={styles.page} >
             <SafeAreaView style={styles.container}>
                 <ModalProvider>
                     <TopBar/>
@@ -20,12 +20,13 @@ const styles = StyleSheet.create({
         flex: 1,                            
         backgroundColor: "#121212",
         padding: 26,
-        // paddingTop: 30
     },
     container: {
         flex: 1,
         // justifyContent: "center",
+
         // alignItems: "center",
+        marginBottom: 60
 
     }
 });

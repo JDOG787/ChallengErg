@@ -1,21 +1,92 @@
-import { View, Text, StyleSheet, pick } from 'react-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { useState } from 'react';
+import { backgroundSecondaryDefault, foregroundPrimaryDefault, foregroundSecondaryDefault } from '../lib/colors';
+import ParagraphAccent from './ParagraphAccent';
+import HeaderSmall from './HeaderSmall';
+import { LineChart } from "react-native-chart-kit";
 
-export default Summary = () => {
+export default Summary = ({ logs }) => {
+
     return (
+        // <View>
         <View style={styles.summary}>
-            <Text style={styles.summaryHeader}>120,594m</Text>
-            <Text style={styles.goal}>out of 1,000,000</Text>
-            <Text style={styles.eventName}>Grand Canyon River</Text>
-        </View>
+
+            <LineChart
+                data={{
+                labels: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+                datasets: [
+                    {
+                        data: logs
+                    },
+                ]
+                }}
+                width={Dimensions.get("window").width - 84} // from react-native
+                height={210}
+                onDataPointClick={({ value, dataset, getColor }) => console.log(value, dataset, getColor)}
+                // yAxisLabel="$"
+                yAxisSuffix="km"
+                yAxisInterval={1} // optional, defaults to 1
+                chartConfig={{
+                backgroundColor: "#262626",
+                backgroundGradientFrom: "#262626",
+                backgroundGradientTo: "#262626",
+                decimalPlaces: 1, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                    borderRadius: 16,
+                },
+                propsForDots: {
+                    r: "6",
+                    strokeWidth: "2",
+                    stroke: "#262626",
+                    
+                }
+                }}
+                bezier
+                style={{
+                    marginVertical: 8,
+                    borderRadius: 16,
+                    // paddingRight: 0
+                }}
+            />
+
+
+            {/* <LineGraph
+            points={[1, 2, 3]}
+            /> */}
+    </View>
     );
 }
 
 const styles = StyleSheet.create({
     summary: {
-        backgroundColor: "#1f1f1f",
-        padding: 18,
-        borderRadius: 10,
-        marginBottom: 18
+        backgroundColor: backgroundSecondaryDefault,
+        paddingHorizontal: 16,
+        paddingTop: 6,
+        borderRadius: 16,
+    },
+    days: {
+
+    },
+    day: {
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+        alignItems: 'center',
+        width: '100%',
+        // padding: 8,
+    },
+    dayofTheWeek: {
+        fontSize: 18,
+        color: foregroundPrimaryDefault,
+        justifyContent: "flex-start",
+        fontWeight: '500',
+    },
+    distance: {
+        fontSize: 18,
+        color: foregroundSecondaryDefault,
+
+
     },
     summaryHeader: {
         fontSize: 42,

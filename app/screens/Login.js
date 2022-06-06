@@ -35,8 +35,8 @@ export default function Login({ navigation }) {
   const auth = useContext(AuthContext);
   return (
     <AuthPage>
-      {/* <KeyboardAvoidingView style={{width: "100%"}} 
-        behavior="position"> */}
+      <KeyboardAvoidingView style={{width: "100%"}} 
+        behavior="position">
         <Hero/>
         <View>
           <HeaderSmall>Log in</HeaderSmall>
@@ -46,7 +46,7 @@ export default function Login({ navigation }) {
           <Button title='Signup' onPress={() => navigation.navigate("Signup")}/>
           <PrimaryButton text="Login" onPress={()=> fetchToken() }/>
         </View>
-      {/* </KeyboardAvoidingView> */}
+      </KeyboardAvoidingView>
     </AuthPage>
 
       // <Image source={logo} style={{width: 150, height: 150, resizeMode: "contain"}}/>

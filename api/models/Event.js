@@ -3,6 +3,11 @@ import mongoose from 'mongoose';
 const schema = new mongoose.Schema({ 
     name: String,
     description: String,
+    distance: Number,
+    startDate: Date,
+    endDate: Date,
+    fromLocation: String,
+    toLocation: String,
     route: [
         {
             latitude: Number,

@@ -1,7 +1,10 @@
-export const API_HOST = "http://localhost";
+export const API_HOST = "http://192.168.132.156";
 export const API_PORT = "3000";
 export const API_BASE_URL = `${API_HOST}:${API_PORT}`;
 export const BG_COLOR = "#121212";
 export const BG_COLOR_LIGHT = "#212121";
 export const ACCENT_COLOR = "#4dc3ff";
 export const TEXT_COLOR = "#EEEEEE";
+export const DAYS_OF_THE_WEEK = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+export const MONTHS_OF_THE_YEAR = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export const MONTHS_OF_THE_YEAR_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

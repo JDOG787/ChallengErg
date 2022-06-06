@@ -5,7 +5,7 @@ import { backgroundPrimaryDefault } from "../lib/colors";
 export default PrimaryButton = (props) => {
     return (
         <TouchableOpacity
-        // style={styles.button}
+        style={styles.buttonWrapper}
         onPress={props.onPress}
         >
             <LinearGradient
@@ -16,7 +16,8 @@ export default PrimaryButton = (props) => {
                 // end={{x: 1, y: 0.8}}
                 angle={90}
                 colors={['#3478F6', '#6EC0F9']}
-                style={styles.button}>
+                style={styles.button}
+                >
                 <Text style={styles.buttonText}>{props.children || props.text}</Text>
             </LinearGradient>
 
@@ -25,6 +26,9 @@ export default PrimaryButton = (props) => {
 }
 
 const styles = StyleSheet.create({
+    buttonWrapper: {
+        // flex: 1
+    },
     button: {
         backgroundColor: "#4dc3ff",
         padding: 12,
