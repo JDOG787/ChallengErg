@@ -53,12 +53,12 @@ const Map = (props) => {
   //   console.log("-------")
   // }, []);
 
-
+console.log("line", props.line)
   return (
-    <MapView style={styles.map}  mapType="mutedStandard">
+    <MapView style={styles.map}  mapType="hybrid">
           <Polyline
             coordinates={props.line}
-            strokeColor="#000" 
+            strokeColor="#222" 
             strokeWidth={6}
           />
           

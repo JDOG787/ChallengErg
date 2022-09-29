@@ -45,7 +45,7 @@ export default function Tabs() {
             )
         }}
     />
-        <Tab.Screen name="Not" component={NotificationsScreen} 
+        <Tab.Screen name="Notifications" component={NotificationsScreen} 
         options={{
             tabBarIcon: ({ focused }) => (
                 <View>

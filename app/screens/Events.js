@@ -53,7 +53,7 @@ export default function Event({ navigation }) {
                 <SeconaryButton text="View main map"/>
                 {
                     events ? events.map((e, i) => {
-                        return <EventCard key={i} name={e.name} from={e.fromLocation} to={e.toLocation} distance={e.distance} start={e.startDate} end={e.endDate} users={e.racers.length}/>
+                        return <EventCard key={i} name={e.name} from={e.fromLocation} to={e.toLocation} distance={e.distance} start={e.startDate} end={e.endDate} users={e.racers.length} id={e._id} navigation={navigation}/>
                         // return <Text>ello</Text>
                     })
                     : <Loader/>

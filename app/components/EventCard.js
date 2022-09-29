@@ -28,7 +28,7 @@ export default EventCard = ({ name, from, to, distance, users, start, end, navig
                 </View>
             </View>
             <PrimaryButton>Register</PrimaryButton>
-            <TertiaryButton>View event</TertiaryButton>
+            <TertiaryButton onPress={() => navigation.navigate("Race")}>View event</TertiaryButton>
         </View>
     )
 }
