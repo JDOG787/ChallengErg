@@ -10,6 +10,7 @@ const schema = new mongoose.Schema({
     toLocation: String,
     route: [
         {
+            _id: false,
             latitude: Number,
             longitude: Number
         }

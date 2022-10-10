@@ -44,10 +44,11 @@ router.post('/add', async (req, res) => {
 router.get("/pastweek", isAuth, async (req, res) => {
     console.log(res.locals.user);
     const logs = await Log.find({user: res.locals.user.id, 
-        date: {
-            $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)
-        }
+        // date: {
+        //     $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000)
+        // }
     });
+    console.log(logs)
     res.json({ success: true, logs });
 });
 
